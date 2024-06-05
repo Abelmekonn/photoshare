@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
+<body class="m-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <a href="{% url 'gallery' %}" class="btn btn-dark my-3">go back</a>
+                <div class="card">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group m-3">
+                            <label>Description</label>
+                            <input required name="description" type="text" placeholder="Description" class="form-control-file">
+                        </div>
+                        <div class="form-group m-3">
+                            <label>Select a Category</label>
+                            <select name="category" class="form-control">
+                                <option value="none">select category</option>
+                                {% for categories in categories %}
+                                    <option value="{{categories.id}}">{{categories.name}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group m-3">
+                            <label>Create new category</label>
+                            <input name="category_new" type="text" placeholder="Create new category" class="form-control-file">
+                        </div>
+                        <div class="form-group m-3">
+                            <label>upload image</label>
+                            <input required name="image" type="file" class="form-control-file">
+                        </div>
+                        <button value="submit" class="btn btn-primary m-3">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
